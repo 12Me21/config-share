@@ -1,4 +1,4 @@
-(setq gc-cons-threshold (* 50 1000 1000)) ;set threshold high to reduce garbage collection at startup
+(setq gc-cons-threshold (* 50 1000 1000)) ;set threshold high to reduce garbage collection during some of startup
 ;;(add-to-list 'load-path "~/.emacs.d/lisp/")
 (setq inhibit-splash-screen t) ;disable splash screen
 (setq visible-cursor nil) ;disable cursor blink
