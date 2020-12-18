@@ -1,11 +1,13 @@
+(setq gc-cons-threshold (* 50 1000 1000)) ;set threshold high to reduce garbage collection at startup
 ;;(add-to-list 'load-path "~/.emacs.d/lisp/")
-(setq inhibit-splash-screen t)
-(setq visible-cursor nil)
-(setq backup-directory-alist `(("." . "~/.saves")))
-(menu-bar-mode -1)
+(setq inhibit-splash-screen t) ;disable splash screen
+(setq visible-cursor nil) ;disable cursor blink
+(setq backup-directory-alist `(("." . "~/.saves"))) ;don't put backups in current directory
+(menu-bar-mode -1) ;hide menu bar
 
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3") 
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3") ;idk this fixed something
 
+;; (I shortened this part because I'm always going to have https support)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -49,80 +51,57 @@
  '(web-mode-html-tag-face ((t (:inherit font-lock-function-name-face))))
  '(widget-field ((t (:extend t :background "#80aaff" :foreground "black")))))
 
+;; file extensions
 (add-to-list 'auto-mode-alist '("\\.pro\\'" . qt-pro-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(setq web-mode-offsetless-elements (list "body" "html" "head"))
+
+(setq web-mode-offsetless-elements (list "body" "html" "head")) ;don't indent inside some html elements
 
 (add-hook
  'emacs-startup-hook
- (lambda nil
+ (lambda ()
    (message "Emacs ready in %.2f seconds with %d garbage collections."
             (float-time (time-subtract after-init-time before-init-time))
-            gcs-done)))
+            gcs-done)
+	(setq gc-cons-threshold (* 1 1000 1000)))) ;reset gc threshold
 
-;; (defface font-lock-arrow-face
-;;   '((t . (:foreground "#A00000" :italic t)))
-;;   "face to display C++ properties in")
-
-;; (defface font-lock-separator-face
-;;   '((t . (:foreground "orangered" :bold t)))
-;;   "face to display C++ separators and whatever in")
-
-;; (defface font-lock-paren-face
-;;   '((t . (:foreground "#808080")))
-;;   "face to display C++ parentheses in")
-
-;; (font-lock-add-keywords 'c++-mode
-;;  								`((
-;;  									"\\(->\\|\\.\\)\\([A-Za-z_][A-Za-z0-9_]*\\)" 2
-;;  									'font-lock-arrow-face t )))
-
-;; (font-lock-add-keywords 'c++-mode
-;;  								`((
-;;  									"\\(->\\|\\.\\|=\\)" 1
-;;  									'font-lock-separator-face t )))
-
-;; (font-lock-add-keywords 'c++-mode
-;;  								`((
-;;  									"\\((\\|)\\)" 1
-;;  									'font-lock-paren-face t )))
-
-(defvar my-keys-minor-mode-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map "\C-o" 'other-window)
-	 (define-key map [?\M-o] 'previous-window-any-frame)
-    (define-key map "\C-j" 'previous-buffer)
-	 (define-key map [C-i] 'next-buffer)
-   ;; (define-key map [?\M-j] 'next-buffer)
-    (define-key map [?\M-\\] 'indent-region)
-    (define-key map [remap (control x)(o)] nil)
-    map)
-  "my-keys-minor-mode keymap.")
-
+;; Custom keybinds
 (define-minor-mode my-keys-minor-mode
-  "A minor mode so that my key settings override annoying major modes."
+  "my custom keybind mode"
   :init-value t
-  :lighter " :")
+  :lighter " :" ;this makes a :) in the mode line
+  :keymap (let ((map (make-sparse-keymap)))
+				(define-key map "\C-o" 'other-window)
+				(define-key map [?\M-o] 'previous-window-any-frame)
+				(define-key map "\C-j" 'previous-buffer)
+				(define-key map [C-i] 'next-buffer) ;not TAB!
+				(define-key map [?\M-\\] 'indent-region)
+				(define-key map [(control x)(o)] (lambda () (interactive))) ;unbind C-x o so I stop using it
+				map))
 
+;; Change line wrap indicator from \ to a blue ↩ (arrow, if your font has it)
 (defface line-wrap-symbol
   '((t . (:background "#88EEFF" :foreground "#0000FF")))
   "face for line wrap symbols")
-
 (set-display-table-slot
  standard-display-table
  'wrap (make-glyph-code ?\↩ 'line-wrap-symbol))
-;; todo: find a symbol for this!◌
 
 (require 'tree-sitter)
 (require 'tree-sitter-langs)
+
+;; various global modes
 (global-tree-sitter-mode)
 (xterm-mouse-mode)
 (global-highlight-parentheses-mode)
-;;(global-hl-line-mode)
 
-(require 'term/xterm)
+;; This handles reading custom key sequences I have set in xterm
+;; xterm translates ctrl+i to ESC[27;5;105~ and emacs translates it back
+;; the format is: ESC[27;<modifiers>;<charcode>~
+(require 'term/xterm) ;this might not be the proper way to do this... I need to ensure that xterm--push-map exists though
 (xterm--push-map
  (let ((map (make-sparse-keymap)))
 	(define-key map "\e[27;5;105~" [C-i])
    map)
  input-decode-map)
+
