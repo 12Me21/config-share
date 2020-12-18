@@ -1,0 +1,1 @@
+/home/twelve/.emacs.d/init.el
