@@ -101,7 +101,23 @@
 (require 'term/xterm) ;this might not be the proper way to do this... I need to ensure that xterm--push-map exists though
 (xterm--push-map
  (let ((map (make-sparse-keymap)))
+	;; key binds that
+	;; xterm and/or emacs were not
+	;; brave enough
+	;; to define
 	(define-key map "\e[27;5;105~" [C-i])
+	(define-key map "\e[27;5;109~" [C-m])
+	(define-key map "\e[27;5;91~" [C-\[])
+	(define-key map "\e[27;5;54~" [?\C-6])
+	;; note: we are keeping [?\C-@] (i.e. [0], rendered as C-@) for ctrl+space
+	;; and remapping ctrl+@ to [C-@] (rendered as <C-@>)
+	(define-key map "\e[27;5;64~" [C-@])
+	(define-key map "\e[27;5;50~" [?\C-2])
+	(define-key map "\e[27;5;126~" [?\C-~])
+	(define-key map "\e[27;5;96~" [?\C-`])
+	(define-key map "\e[27;13;27~" [?\C-\M-\e]) ;wow
+	(define-key map "\e[27;9;27~" [?\M-\e])
+	(define-key map "\e[27;5;27~" [?\C-\e])
    map)
  input-decode-map)
 
