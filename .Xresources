@@ -1,0 +1,47 @@
+!important
+
+xterm*termName: xterm-256color
+
+XTerm.vt100.metaSendsEscape: true
+
+!font
+
+xterm*faceName: Cascadia Code
+xterm*faceSize: 12
+xterm*renderFont: true
+
+xterm*BorderWidth: 5
+
+!paste
+
+XTerm*VT100.Translations: #override \
+ Shift Ctrl <Key>V: insert-selection(CLIPBOARD) \n\
+ Ctrl Shift <Key>C: copy-selection(CLIPBOARD)
+
+!colors
+
+xterm*background: rgb:FF/FF/FF
+xterm*foreground: rgb:00/00/00
+xterm*cursorColor: rgb:00/AA/00
+
+xterm*color0: rgb:00/00/00
+xterm*color1: rgb:AA/00/00
+xterm*color2: rgb:00/AA/00
+xterm*color3: rgb:AA/55/00
+xterm*color4: rgb:00/00/AA
+xterm*color5: rgb:AA/00/AA
+xterm*color6: rgb:00/AA/AA
+xterm*color7: rgb:AA/AA/AA
+
+xterm*color8: rgb:55/55/55
+xterm*color9: rgb:FF/55/55
+xterm*color10: rgb:55/FF/55
+xterm*color11: rgb:FF/FF/55
+xterm*color12: rgb:55/55/FF
+xterm*color13: rgb:FF/55/FF
+xterm*color14: rgb:55/FF/FF
+xterm*color15: rgb:FF/FF/FF
+
+! Keys
+
+XTerm*vt100.translations: #override Ctrl <Key>i: string(0x1b) string("[27;5;105~")
