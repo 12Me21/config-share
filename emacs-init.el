@@ -26,7 +26,7 @@
  '(org-src-fontify-natively t)
  '(org-src-tab-acts-natively t)
  '(package-selected-packages
-	'(highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode))
+	'(page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
  '(pascal-case-indent 3)
  '(sgml-basic-offset 3)
  '(sh-basic-offset 3)
@@ -121,3 +121,4 @@
    map)
  input-decode-map)
 
+(xclip-mode)
