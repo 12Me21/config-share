@@ -1,8 +1,7 @@
 (setq gc-cons-threshold (* 50 1000 1000)) ;set threshold high to reduce garbage collection during some of startup
-;;(add-to-list 'load-path "~/.emacs.d/lisp/")
 (setq inhibit-splash-screen t) ;disable splash screen
 (setq visible-cursor nil) ;disable cursor blink
-(setq backup-directory-alist `(("." . "~/.saves"))) ;don't put backups in current directory
+(setq backup-directory-alist '(("." . "~/.saves"))) ;don't put backups in current directory
 (menu-bar-mode -1) ;hide menu bar
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3") ;idk this fixed something
@@ -21,6 +20,10 @@
  '(css-indent-offset 3)
  '(form-feed-line-width t)
  '(global-form-feed-mode t)
+ '(global-highlight-parentheses-mode nil)
+ '(global-tree-sitter-mode t)
+ '(highlight-parentheses-background-colors '("color-207"))
+ '(highlight-parentheses-colors '("color-196" "IndianRed2" "IndianRed4"))
  '(indent-tabs-mode t)
  '(js-indent-level 3)
  '(org-src-fontify-natively t)
@@ -34,7 +37,9 @@
  '(standard-indent 3)
  '(tab-width 3)
  '(tree-sitter-hl-use-font-lock-keywords nil)
- '(web-mode-enable-control-block-indentation nil))
+ '(web-mode-enable-control-block-indentation nil)
+ '(xclip-mode t)
+ '(xterm-mouse-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -55,7 +60,7 @@
 (add-to-list 'auto-mode-alist '("\\.pro\\'" . qt-pro-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 
-(setq web-mode-offsetless-elements (list "body" "html" "head")) ;don't indent inside some html elements
+(setq web-mode-offsetless-elements '("body" "html" "head")) ;don't indent inside some html elements
 
 (add-hook
  'emacs-startup-hook
@@ -90,11 +95,6 @@
 (require 'tree-sitter)
 (require 'tree-sitter-langs)
 
-;; various global modes
-(global-tree-sitter-mode)
-(xterm-mouse-mode)
-(global-highlight-parentheses-mode)
-
 ;; This handles reading custom key sequences I have set in xterm
 ;; xterm translates ctrl+i to ESC[27;5;105~ and emacs translates it back
 ;; the format is: ESC[27;<modifiers>;<charcode>~
@@ -120,5 +120,3 @@
 	(define-key map "\e[27;5;27~" [?\C-\e])
    map)
  input-decode-map)
-
-(xclip-mode)
