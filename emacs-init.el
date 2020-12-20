@@ -26,10 +26,15 @@
  '(highlight-parentheses-colors '("color-196" "IndianRed2" "IndianRed4"))
  '(indent-tabs-mode t)
  '(js-indent-level 3)
+ '(mode-line-format
+	'("%e" mode-line-front-space mode-line-client mode-line-modified mode-line-front-space " " mode-line-buffer-identification "   " mode-line-position
+	  (vc-mode vc-mode)
+	  "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
+ '(mode-line-position-line-format '(" L:%l"))
  '(org-src-fontify-natively t)
  '(org-src-tab-acts-natively t)
  '(package-selected-packages
-	'(page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
+	'(## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
  '(pascal-case-indent 3)
  '(sgml-basic-offset 3)
  '(sh-basic-offset 3)
@@ -45,9 +50,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "Firebrick"))))
+ '(font-lock-comment-face ((t (:extend t :background "#FFF0F0" :foreground "#CC0000" :slant italic))))
  '(hl-line ((t (:extend t :background "#DDFFDD"))))
- '(mode-line ((t (:box (:line-width (1 . -1) :style released-button) :foreground "white" :background "gray30"))))
+ '(mode-line ((t (:box (:line-width (1 . -1) :style released-button) :foreground "#EEEEEE" :background "gray30"))))
  '(mode-line-inactive ((t (:inherit mode-line :background "grey60" :foreground "grey0" :box (:line-width (1 . -1) :color "grey75") :weight light))))
  '(tab-bar ((t (:foreground "black" :background "grey90" :inherit variable-pitch))))
  '(web-mode-doctype-face ((t (:foreground "Snow4"))))
