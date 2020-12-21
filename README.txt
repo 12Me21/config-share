@@ -2,7 +2,7 @@
 location: ~/.emacs.d/init.el
 loaded automatically during emacs startup
 
-* xterm-xresources
+* xterm-xresources.ad
 location: ~/.Xresources
 loaded automatically during boot
 update manually using `xrdb -merge ~/.Xresources`
