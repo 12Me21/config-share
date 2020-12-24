@@ -4,8 +4,6 @@
 ;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;(package-initialize)
 
-;; Change line wrap indicator from \ to a blue ↩ (arrow, if your font has it)
-
 (require 'tree-sitter)
 (require 'tree-sitter-langs)
 
@@ -32,6 +30,8 @@
    (define-key map "\e[27;13;27~" [?\C-\M-\e]) ;wow
    (define-key map "\e[27;9;27~" [?\M-\e])
    (define-key map "\e[27;5;27~" [?\C-\e])
+	;; mouse
+
    map)
  input-decode-map)
 
@@ -44,38 +44,50 @@
  'c 'c++ 'java 'javascript 'cperl 'python 'ruby 'nxml ;builtin
  'lua) ;custom
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (message "Emacs ready in %.2f seconds with %d garbage collections."
-                     (float-time (time-subtract after-init-time before-init-time))
-                     gcs-done)
-            (setq gc-cons-threshold (* 1 1000 1000)))) ;reset gc threshold
+(add-hook
+ 'emacs-startup-hook
+ (lambda ()
+   (message "Emacs ready in %.2f seconds with %d garbage collections."
+            (float-time (time-subtract after-init-time before-init-time))
+            gcs-done)
+   (setq gc-cons-threshold (* 1 1000 1000)))) ;reset gc threshold
 
 
 (defface line-wrap-symbol
   '((t . (:background "#88EEFF" :foreground "#0000FF")))
   "face for line wrap symbols")
 
+(defgroup display-table
+  '((display-table-wrap custom-variable)
+	 (display-table-vertical-border custom-variable)
+	 (display-table-truncation custom-variable))
+  "Standard display table glyphs")
+
 (defmacro defcustom-table-slot (varname slot doc default)
   `(defcustom ,varname
 	  ,default
 	  ,doc
-	  :type '(cons character face)
+	  :group 'display-table
+	  :type '(list character face)
 	  :set (lambda (sym value)
-				(set-display-table-slot standard-display-table ,slot (make-glyph-code (car value) (cdr value))))
+				(set-display-table-slot standard-display-table ,slot (make-glyph-code (car value) (car (cdr value)))))
 	  :get (lambda (sym)
 				(let ((glyph (display-table-slot standard-display-table ,slot)))
-				  (cons (glyph-char glyph) (glyph-face glyph))))))
+				  (list (glyph-char glyph) (or (glyph-face glyph) 'default))))))
 
-(defvar display-table-vertical-border '(?\| . vertical-border))
+(defvar display-table-vertical-border '(?\| vertical-border))
 (defcustom-table-slot display-table-vertical-border
   'vertical-border
   "Glyph to use for the vertical borders separating windows"
-  '(?\| . vertical-border))
-(defvar display-table-wrap '(?\/ . default))
+  '(?\| vertical-border))
+(defvar display-table-wrap '(?\\ default))
 (defcustom-table-slot display-table-wrap 'wrap
   "Glyph to use for line wrap symbols"
-  '(?\↩ . default))
+  '(?\\ default))
+(defvar display-table-truncation '(?\$ default))
+(defcustom-table-slot display-table-truncation 'truncation
+  "Glyph used to indicate lines that extend offscreen"
+  '(?\$ default))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -83,11 +95,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(backup-directory-alist '(("." . "~/.saves")))
+ '(blink-matching-paren-on-screen nil)
  '(c-basic-offset 3)
  '(css-indent-offset 3)
  '(delete-by-moving-to-trash t)
- '(display-table-vertical-border '(9475 . vertical-border))
- '(display-table-wrap '(8617 . line-wrap-symbol))
+ '(display-table-vertical-border '(9475 vertical-border))
+ '(display-table-wrap '(8617 line-wrap-symbol))
+ '(display-time-mode t)
  '(form-feed-line-width t)
  '(gc-cons-threshold 1000000)
  '(global-form-feed-mode t)
@@ -112,11 +126,12 @@
 	'(("gnu" . "https://elpa.gnu.org/packages/")
 	  ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-	'(ascii-table sm-c-mode csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
+	'(eimp ascii-table sm-c-mode csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
  '(pascal-case-indent 3)
  '(sgml-basic-offset 3)
  '(sh-basic-offset 3)
  '(sh-indentation 3)
+ '(show-paren-mode t)
  '(standard-indent 3)
  '(tab-width 3)
  '(tree-sitter-hl-use-font-lock-keywords nil)
@@ -165,7 +180,7 @@
  '(mode-line ((t (:box (:line-width (1 . -1) :style released-button) :foreground "#EEEEEE" :background "gray30"))))
  '(mode-line-inactive ((t (:inherit mode-line :background "grey60" :foreground "grey0" :box (:line-width (1 . -1) :color "grey75") :weight light))))
  '(tab-bar ((t (:foreground "black" :background "grey90" :inherit variable-pitch))))
- '(vertical-border ((t (:inherit mode-line-inactive :background "transparent" :weight ultra-bold))))
+ '(vertical-border ((t (:weight ultra-bold :background "aaaaaaaaa" :inherit mode-line-inactive))))
  '(web-mode-doctype-face ((t (:foreground "Snow4"))))
  '(web-mode-html-attr-name-face ((t (:inherit font-lock-variable-name-face))))
  '(web-mode-html-tag-bracket-face ((t nil)))

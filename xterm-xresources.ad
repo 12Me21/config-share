@@ -63,3 +63,5 @@ XTerm*color15: rgb:FF/FF/FF
 !Esc: string(0x1b) string("[27;1;27~") this wont work :(
 
 XTerm*allowWindowOps: true
+
+XTerm*visualBell: false
