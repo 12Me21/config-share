@@ -22,19 +22,19 @@
  '(global-form-feed-mode t)
  '(global-highlight-parentheses-mode nil)
  '(global-tree-sitter-mode t)
- '(highlight-parentheses-background-colors '("color-207"))
- '(highlight-parentheses-colors '("color-196" "IndianRed2" "IndianRed4"))
- '(indent-tabs-mode t)
+ '(highlight-parentheses-background-colors '("#EEDDCC"))
+ '(highlight-parentheses-colors '("#FF0000" "IndianRed2" "IndianRed4"))
+ '(indent-tabs-mode nil)
  '(js-indent-level 3)
  '(mode-line-format
-	'("%e" mode-line-front-space mode-line-client mode-line-modified mode-line-front-space " " mode-line-buffer-identification "   " mode-line-position
-	  (vc-mode vc-mode)
-	  "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
+   '("%e" mode-line-front-space mode-line-client mode-line-modified mode-line-front-space " " mode-line-buffer-identification "   " mode-line-position
+     (vc-mode vc-mode)
+     "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
  '(mode-line-position-line-format '(" L:%l"))
  '(org-src-fontify-natively t)
  '(org-src-tab-acts-natively t)
  '(package-selected-packages
-	'(## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
+   '(csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
  '(pascal-case-indent 3)
  '(sgml-basic-offset 3)
  '(sh-basic-offset 3)
@@ -73,7 +73,7 @@
    (message "Emacs ready in %.2f seconds with %d garbage collections."
             (float-time (time-subtract after-init-time before-init-time))
             gcs-done)
-	(setq gc-cons-threshold (* 1 1000 1000)))) ;reset gc threshold
+   (setq gc-cons-threshold (* 1 1000 1000)))) ;reset gc threshold
 
 ;; Custom keybinds
 (define-minor-mode my-keys-minor-mode
@@ -81,13 +81,13 @@
   :init-value t
   :lighter " :" ;this makes a :) in the mode line
   :keymap (let ((map (make-sparse-keymap)))
-				(define-key map "\C-o" 'other-window)
-				(define-key map [?\M-o] 'previous-window-any-frame)
-				(define-key map "\C-j" 'previous-buffer)
-				(define-key map [C-i] 'next-buffer) ;not TAB!
-				(define-key map [?\M-\\] 'indent-region)
-				(define-key map [(control x)(o)] (lambda () (interactive))) ;unbind C-x o so I stop using it
-				map))
+            (define-key map "\C-o" 'other-window)
+            (define-key map [?\M-o] 'previous-window-any-frame)
+            (define-key map "\C-j" 'previous-buffer)
+            (define-key map [C-i] 'next-buffer) ;not TAB!
+            (define-key map [?\M-\\] 'indent-region)
+            (define-key map [(control x)(o)] (lambda () (interactive))) ;unbind C-x o so I stop using it
+            map))
 
 ;; Change line wrap indicator from \ to a blue ↩ (arrow, if your font has it)
 (defface line-wrap-symbol
@@ -106,22 +106,25 @@
 (require 'term/xterm) ;this might not be the proper way to do this... I need to ensure that xterm--push-map exists though
 (xterm--push-map
  (let ((map (make-sparse-keymap)))
-	;; key binds that
-	;; xterm and/or emacs were not
-	;; brave enough
-	;; to define
-	(define-key map "\e[27;5;105~" [C-i])
-	(define-key map "\e[27;5;109~" [C-m])
-	(define-key map "\e[27;5;91~" [C-\[])
-	(define-key map "\e[27;5;54~" [?\C-6])
-	;; note: we are keeping [?\C-@] (i.e. [0], rendered as C-@) for ctrl+space
-	;; and remapping ctrl+@ to [C-@] (rendered as <C-@>)
-	(define-key map "\e[27;5;64~" [C-@])
-	(define-key map "\e[27;5;50~" [?\C-2])
-	(define-key map "\e[27;5;126~" [?\C-~])
-	(define-key map "\e[27;5;96~" [?\C-`])
-	(define-key map "\e[27;13;27~" [?\C-\M-\e]) ;wow
-	(define-key map "\e[27;9;27~" [?\M-\e])
-	(define-key map "\e[27;5;27~" [?\C-\e])
+   ;; key binds that
+   ;; xterm and/or emacs were not
+   ;; brave enough
+   ;; to define
+   (define-key map "\e[27;5;105~" [C-i])
+   (define-key map "\e[27;5;109~" [C-m])
+   (define-key map "\e[27;5;91~" [C-\[])
+   (define-key map "\e[27;5;54~" [?\C-6])
+   ;; note: we are keeping [?\C-@] (i.e. [0], rendered as C-@) for ctrl+space
+   ;; and remapping ctrl+@ to [C-@] (rendered as <C-@>)
+   (define-key map "\e[27;5;64~" [C-@])
+   (define-key map "\e[27;5;50~" [?\C-2])
+   (define-key map "\e[27;5;126~" [?\C-~])
+   (define-key map "\e[27;5;96~" [?\C-`])
+   (define-key map "\e[27;13;27~" [?\C-\M-\e]) ;wow
+   (define-key map "\e[27;9;27~" [?\M-\e])
+   (define-key map "\e[27;5;27~" [?\C-\e])
    map)
  input-decode-map)
+
+(smart-tabs-insinuate 'c 'c++ 'java 'javascript 'cperl 'python
+'ruby 'nxml)
