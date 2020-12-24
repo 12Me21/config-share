@@ -30,7 +30,7 @@
    (define-key map "\e[27;13;27~" [?\C-\M-\e]) ;wow
    (define-key map "\e[27;9;27~" [?\M-\e])
    (define-key map "\e[27;5;27~" [?\C-\e])
-	;; mouse
+   ;; mouse
 
    map)
  input-decode-map)
@@ -59,21 +59,21 @@
 
 (defgroup display-table
   '((display-table-wrap custom-variable)
-	 (display-table-vertical-border custom-variable)
-	 (display-table-truncation custom-variable))
+    (display-table-vertical-border custom-variable)
+    (display-table-truncation custom-variable))
   "Standard display table glyphs")
 
 (defmacro defcustom-table-slot (varname slot doc default)
   `(defcustom ,varname
-	  ,default
-	  ,doc
-	  :group 'display-table
-	  :type '(list character face)
-	  :set (lambda (sym value)
-				(set-display-table-slot standard-display-table ,slot (make-glyph-code (car value) (car (cdr value)))))
-	  :get (lambda (sym)
-				(let ((glyph (display-table-slot standard-display-table ,slot)))
-				  (list (glyph-char glyph) (or (glyph-face glyph) 'default))))))
+     ,default
+     ,doc
+     :group 'display-table
+     :type '(list character face)
+     :set (lambda (sym value)
+            (set-display-table-slot standard-display-table ,slot (make-glyph-code (car value) (car (cdr value)))))
+     :get (lambda (sym)
+            (let ((glyph (display-table-slot standard-display-table ,slot)))
+              (list (glyph-char glyph) (or (glyph-face glyph) 'default))))))
 
 (defvar display-table-vertical-border '(?\| vertical-border))
 (defcustom-table-slot display-table-vertical-border
@@ -114,19 +114,20 @@
  '(inhibit-default-init nil)
  '(inhibit-startup-screen t)
  '(js-indent-level 3)
+ '(lisp-mode-hook '((lambda nil (setq indent-tabs-mode nil))))
  '(menu-bar-mode nil)
  '(mode-line-format
-	'("%e" mode-line-front-space mode-line-client mode-line-modified mode-line-front-space " " mode-line-buffer-identification "   " mode-line-position
-	  (vc-mode vc-mode)
-	  "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
+   '("%e" mode-line-front-space mode-line-client mode-line-modified mode-line-front-space " " mode-line-buffer-identification "   " mode-line-position
+     (vc-mode vc-mode)
+     "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
  '(mode-line-position-line-format '(" L:%l"))
  '(org-src-fontify-natively t)
  '(org-src-tab-acts-natively t)
  '(package-archives
-	'(("gnu" . "https://elpa.gnu.org/packages/")
-	  ("melpa" . "https://melpa.org/packages/")))
+   '(("gnu" . "https://elpa.gnu.org/packages/")
+     ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-	'(eimp ascii-table sm-c-mode csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
+   '(eimp ascii-table sm-c-mode csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
  '(pascal-case-indent 3)
  '(sgml-basic-offset 3)
  '(sh-basic-offset 3)
@@ -136,34 +137,34 @@
  '(tab-width 3)
  '(tree-sitter-hl-use-font-lock-keywords nil)
  '(tree-sitter-major-mode-language-alist
-	'((agda-mode . agda)
-	  (sh-mode . bash)
-	  (c-mode . c)
-	  (csharp-mode . c-sharp)
-	  (c++-mode . cpp)
-	  (css-mode . css)
-	  (elm-mode . elm)
-	  (go-mode . go)
-	  (haskell-mode . haskell)
-	  (html-mode . html)
-	  (java-mode . java)
-	  (js-mode . javascript)
-	  (js2-mode . javascript)
-	  (json-mode . json)
-	  (jsonc-mode . json)
-	  (julia-mode . julia)
-	  (ocaml-mode . ocaml)
-	  (php-mode . php)
-	  (python-mode . python)
-	  (rjsx-mode . javascript)
-	  (ruby-mode . ruby)
-	  (rust-mode . rust)
-	  (rustic-mode . rust)
-	  (scala-mode . scala)
-	  (swift-mode . swift)
-	  (tuareg-mode . ocaml)
-	  (typescript-mode . typescript)
-	  (sm-c-mode . c)))
+   '((agda-mode . agda)
+     (sh-mode . bash)
+     (c-mode . c)
+     (csharp-mode . c-sharp)
+     (c++-mode . cpp)
+     (css-mode . css)
+     (elm-mode . elm)
+     (go-mode . go)
+     (haskell-mode . haskell)
+     (html-mode . html)
+     (java-mode . java)
+     (js-mode . javascript)
+     (js2-mode . javascript)
+     (json-mode . json)
+     (jsonc-mode . json)
+     (julia-mode . julia)
+     (ocaml-mode . ocaml)
+     (php-mode . php)
+     (python-mode . python)
+     (rjsx-mode . javascript)
+     (ruby-mode . ruby)
+     (rust-mode . rust)
+     (rustic-mode . rust)
+     (scala-mode . scala)
+     (swift-mode . swift)
+     (tuareg-mode . ocaml)
+     (typescript-mode . typescript)
+     (sm-c-mode . c)))
  '(visible-cursor nil)
  '(web-mode-enable-control-block-indentation nil)
  '(xclip-mode t)
