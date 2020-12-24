@@ -24,17 +24,17 @@
  '(global-tree-sitter-mode t)
  '(highlight-parentheses-background-colors '("#EEDDCC"))
  '(highlight-parentheses-colors '("#FF0000" "IndianRed2" "IndianRed4"))
- '(indent-tabs-mode nil)
+ '(indent-tabs-mode t)
  '(js-indent-level 3)
  '(mode-line-format
-   '("%e" mode-line-front-space mode-line-client mode-line-modified mode-line-front-space " " mode-line-buffer-identification "   " mode-line-position
-     (vc-mode vc-mode)
-     "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
+	'("%e" mode-line-front-space mode-line-client mode-line-modified mode-line-front-space " " mode-line-buffer-identification "   " mode-line-position
+	  (vc-mode vc-mode)
+	  "  " mode-line-modes mode-line-misc-info mode-line-end-spaces))
  '(mode-line-position-line-format '(" L:%l"))
  '(org-src-fontify-natively t)
  '(org-src-tab-acts-natively t)
  '(package-selected-packages
-   '(csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
+	'(csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
  '(pascal-case-indent 3)
  '(sgml-basic-offset 3)
  '(sh-basic-offset 3)
@@ -51,10 +51,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(font-lock-comment-face ((t (:extend t :background "#FFF0F0" :foreground "#CC0000" :slant italic))))
+ '(font-lock-regexp-grouping-backslash ((t (:foreground "gray55"))))
+ '(font-lock-regexp-grouping-construct ((t (:inherit bold))))
  '(hl-line ((t (:extend t :background "#DDFFDD"))))
  '(mode-line ((t (:box (:line-width (1 . -1) :style released-button) :foreground "#EEEEEE" :background "gray30"))))
  '(mode-line-inactive ((t (:inherit mode-line :background "grey60" :foreground "grey0" :box (:line-width (1 . -1) :color "grey75") :weight light))))
  '(tab-bar ((t (:foreground "black" :background "grey90" :inherit variable-pitch))))
+ '(vertical-border ((t (:inherit mode-line-inactive :background "transparent" :weight ultra-bold))))
  '(web-mode-doctype-face ((t (:foreground "Snow4"))))
  '(web-mode-html-attr-name-face ((t (:inherit font-lock-variable-name-face))))
  '(web-mode-html-tag-bracket-face ((t nil)))
@@ -67,13 +70,12 @@
 
 (setq web-mode-offsetless-elements '("body" "html" "head")) ;don't indent inside some html elements
 
-(add-hook
- 'emacs-startup-hook
- (lambda ()
-   (message "Emacs ready in %.2f seconds with %d garbage collections."
-            (float-time (time-subtract after-init-time before-init-time))
-            gcs-done)
-   (setq gc-cons-threshold (* 1 1000 1000)))) ;reset gc threshold
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %.2f seconds with %d garbage collections."
+                     (float-time (time-subtract after-init-time before-init-time))
+                     gcs-done)
+            (setq gc-cons-threshold (* 1 1000 1000)))) ;reset gc threshold
 
 ;; Custom keybinds
 (define-minor-mode my-keys-minor-mode
@@ -96,6 +98,10 @@
 (set-display-table-slot
  standard-display-table
  'wrap (make-glyph-code ?\↩ 'line-wrap-symbol))
+
+(set-display-table-slot
+ standard-display-table
+ 'vertical-border (make-glyph-code ?\┃ 'vertical-border))
 
 (require 'tree-sitter)
 (require 'tree-sitter-langs)
@@ -126,5 +132,11 @@
    map)
  input-decode-map)
 
-(smart-tabs-insinuate 'c 'c++ 'java 'javascript 'cperl 'python
-'ruby 'nxml)
+;; smart tabs mode
+(smart-tabs-add-language-support lua lua-mode-hook
+  ((lua-indent-line . lua-indent-level)
+   (lua-indent-region . lua-indent-level)))
+
+(smart-tabs-insinuate
+ 'c 'c++ 'java 'javascript 'cperl 'python 'ruby 'nxml ;builtin
+ 'lua) ;custom

@@ -1,5 +1,4 @@
-! xrdb -merge "$0"
-! exit
+! xrdb -merge "$0"; exit
 
 XTerm*termName: xterm-24bit
 XTerm.vt100.metaSendsEscape: true
@@ -7,7 +6,10 @@ XTerm.vt100.metaSendsEscape: true
 ! font
 XTerm*renderFont: true
 XTerm*faceName: Cascadia Code
-XTerm*faceSize: 12
+XTerm*faceSize: 13
+!XTerm*scaleHeight: 1.01
+!XTerm*useClipping: false
+XTerm*showMissingGlyphs: true
 
 ! these are the font sizes for the ctrl+rightclick menu
 XTerm*faceSize1: 3
@@ -17,16 +19,15 @@ XTerm*faceSize4: 18
 XTerm*faceSize5: 24
 XTerm*faceSize6: 32
 
-XTerm*BorderWidth: 5
+XTerm*BorderWidth: 2
 
-XTerm*vt100.Translations: #override \
-! paste text with Ctrl-Shift-V
+xterm*vt100.Translations: #override \
+/* copy/paste with Ctrl-Shift-C/V */\
  Shift Ctrl <Key>V: insert-selection(CLIPBOARD) \n\
-! copy selected text with Ctrl-Shift-C
  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-! disable Alt-Return fullscreen shortcut
+/* disable Alt-Enter fullscreen shortcut */\
  Alt <Key>Return: ignore() \n\
-! these allow distingushing keypresses which normally send the same sequences (ex: Ctrl-I and Tab)
+/* these allow distinguishing things like Ctrl-I vs Tab */\
  Ctrl       <Key>i: string(0x1b) string("[27;5;105~") \n\
  Ctrl       <Key>m: string(0x1b) string("[27;5;109~") \n\
  Ctrl      <Key>\[: string(0x1b) string("[27;5;91~" ) \n\
@@ -34,7 +35,7 @@ XTerm*vt100.Translations: #override \
  Ctrl Shift <Key>2: string(0x1b) string("[27;5;64~" ) \n\
  Ctrl       <Key>2: string(0x1b) string("[27;5;50~" ) \n\
  Ctrl Shift <Key>`: string(0x1b) string("[27;5;126~") \n\
- Ctrl       <Key>`: string(0x1b) string("[27;5;96~" )
+ Ctrl       <Key>`: string(0x1b) string("[27;5;96~" ) \n\
 
 XTerm*scrollkey: true
 

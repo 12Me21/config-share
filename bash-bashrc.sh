@@ -36,7 +36,6 @@ case $TERM in
 		PS1+="`esc '[1;34m'        '\w'`" # bold, blue.  Current Path
 		PS1+="`esc '[39;22m'       '\$'`" # reset color, reset bold.  "$" (or "#" if root)
 		PS1+="`esc '[m'            ' ' `" # reset attribytes.  Space
-		PS1+="`esc '[K'                `" # clear rest of row
 		unset -f esc
 
 		# magic function which prints a newline before printing prompt
@@ -44,8 +43,9 @@ case $TERM in
 		PROMPT_COMMAND=_my_prompt_command
 		function _my_prompt_command {
 			local curpos
-			IFS=';' read -p$'\E[6n' -d'R' -s -t'.3' _ curpos
+			IFS=';' read -p$'\e[6n' -d'R' -s -t5 _ curpos
 			((curpos!=1)) && echo
+			echo -n $'\e[m\e[K' #clear row
 		}
 
 		if [ -x /usr/bin/dircolors ]; then
