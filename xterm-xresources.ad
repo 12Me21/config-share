@@ -6,8 +6,8 @@ XTerm.vt100.metaSendsEscape: true
 ! font
 XTerm*renderFont: true
 XTerm*faceName: Cascadia Code
-XTerm*faceSize: 13
-!XTerm*scaleHeight: 1.01
+XTerm*faceSize: 12
+XTerm*scaleHeight: 1
 !XTerm*useClipping: false
 XTerm*showMissingGlyphs: true
 
@@ -19,7 +19,7 @@ XTerm*faceSize4: 18
 XTerm*faceSize5: 24
 XTerm*faceSize6: 32
 
-XTerm*BorderWidth: 2
+XTerm*BorderWidth: 4
 
 xterm*vt100.Translations: #override \
 /* copy/paste with Ctrl-Shift-C/V */\
@@ -30,12 +30,23 @@ xterm*vt100.Translations: #override \
 /* these allow distinguishing things like Ctrl-I vs Tab */\
  Ctrl       <Key>i: string(0x1b) string("[27;5;105~") \n\
  Ctrl       <Key>m: string(0x1b) string("[27;5;109~") \n\
- Ctrl      <Key>\[: string(0x1b) string("[27;5;91~" ) \n\
- Ctrl       <Key>6: string(0x1b) string("[27;5;54~" ) \n\
- Ctrl Shift <Key>2: string(0x1b) string("[27;5;64~" ) \n\
- Ctrl       <Key>2: string(0x1b) string("[27;5;50~" ) \n\
+ Ctrl Shift <Key>[: string(0x1b) string("[27;5;123~") \n\
+ Ctrl       <Key>[: string(0x1b) string("[27;5;91~") \n\
+ Ctrl Shift <Key>]: string(0x1b) string("[27;5;125~") \n\
  Ctrl Shift <Key>`: string(0x1b) string("[27;5;126~") \n\
- Ctrl       <Key>`: string(0x1b) string("[27;5;96~" ) \n\
+ Ctrl       <Key>`: string(0x1b) string("[27;5;96~") \n\
+ Ctrl       <Key>/: string(0x1b) string("[27;5;47~") \n\
+ Ctrl Shift <Key>\: string(0x1b) string("[27;5;124~") \n\
+/* ctrl+numbers */\
+ Ctrl Shift <Key>2: string(0x1b) string("[27;5;64~") \n\
+ Ctrl       <Key>2: string(0x1b) string("[27;5;50~") \n\
+ Ctrl       <Key>3: string(0x1b) string("[27;5;51~") \n\
+ Ctrl       <Key>4: string(0x1b) string("[27;5;52~") \n\
+ Ctrl       <Key>5: string(0x1b) string("[27;5;53~") \n\
+ Ctrl Shift <Key>6: string(0x1b) string("[27;5;94~") \n\
+ Ctrl       <Key>6: string(0x1b) string("[27;5;54~") \n\
+ Ctrl       <Key>7: string(0x1b) string("[27;5;55~") \n\
+ Ctrl       <Key>8: string(0x1b) string("[27;5;56~") \n\
 
 XTerm*scrollkey: true
 
