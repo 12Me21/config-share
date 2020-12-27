@@ -30,6 +30,7 @@ xterm*vt100.Translations: #override \
 /* these allow distinguishing things like Ctrl-I vs Tab */\
  Ctrl       <Key>i: string(0x1b) string("[27;5;105~") \n\
  Ctrl       <Key>m: string(0x1b) string("[27;5;109~") \n\
+ Ctrl       <Key>w: string(0x1b) string("[27;5;119~") \n\
  Ctrl Shift <Key>[: string(0x1b) string("[27;5;123~") \n\
  Ctrl       <Key>[: string(0x1b) string("[27;5;91~") \n\
  Ctrl Shift <Key>]: string(0x1b) string("[27;5;125~") \n\

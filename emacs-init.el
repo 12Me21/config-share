@@ -25,6 +25,7 @@
    ;; and remapping ctrl+@ to [C-@] (rendered as <C-@>)
    (define-key map "\e[27;5;105~" [C-i]   )
    (define-key map "\e[27;5;109~" [C-m]   )
+   (define-key map "\e[27;5;119~" [?\C-w]   )
    (define-key map "\e[27;5;64~"  [C-@]   )
    (define-key map "\e[27;5;91~"  [C-\[]  )
 
