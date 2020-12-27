@@ -17,4 +17,6 @@ loaded automatically by readline (used by many programs, including bash)
 
 ---
 
-Note: xterm-24bit was redundant. Set TERM to "xterm-direct" (or the -direct variant of whatever terminal you use, if available)
+* `xterm-24bit.term`
+install with `tic -x xterm-24bit.term`
+xterm with special emacs RGB color sequences
