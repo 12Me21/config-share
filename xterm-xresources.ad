@@ -25,37 +25,40 @@ xterm*vt100.Translations: #override \
 /* copy/paste with Ctrl-Shift-C/V */\
  Shift Ctrl <Key>V: insert-selection(CLIPBOARD) \n\
  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-/* disable Alt-Enter fullscreen shortcut */\
- Alt <Key>Return: ignore() \n\
+/* disable Alt-Enter fullscreen shortcut + restore M-RET */\
+/* Ctrl Alt <Key>Return: string("\033\010") \n\ C-M-RET idk... */\
+ Alt <Key>Return: string("\033\015") \n\
 /* modified escape keypresses */\
- Ctrl Alt Shift <Key>Escape: string(0x1b) string("[27;8;27~") \n\
- Ctrl Alt <Key>Escape: string(0x1b) string("[27;7;27~") \n\
- Ctrl Shift <Key>Escape: string(0x1b) string("[27;6;27~") \n\
- Alt Shift <Key>Escape: string(0x1b) string("[27;4;27~") \n\
- Ctrl <Key>Escape: string(0x1b) string("[27;5;27~") \n\
- Alt <Key>Escape: string(0x1b) string("[27;3;27~") \n\
- Shift <Key>Escape: string(0x1b) string("[27;2;27~") \n\
+ Ctrl Alt Shift <Key>Escape: string("\033[27;8;27~") \n\
+ Ctrl Alt <Key>Escape: string("\033[27;7;27~") \n\
+ Ctrl Shift <Key>Escape: string("\033[27;6;27~") \n\
+ Alt Shift <Key>Escape: string("\033[27;4;27~") \n\
+ Ctrl <Key>Escape: string("\033[27;5;27~") \n\
+ Alt <Key>Escape: string("\033[27;3;27~") \n\
+ Shift <Key>Escape: string("\033[27;2;27~") \n\
 /* these allow distinguishing things like Ctrl-I vs Tab */\
- Ctrl ~Shift <Key>2: string(0x1b) string("[27;5;50~") \n\
- Ctrl ~Shift <Key>3: string(0x1b) string("[27;5;51~") \n\
- Ctrl ~Shift <Key>4: string(0x1b) string("[27;5;52~") \n\
- Ctrl ~Shift <Key>5: string(0x1b) string("[27;5;53~") \n\
- Ctrl ~Shift <Key>6: string(0x1b) string("[27;5;54~") \n\
- Ctrl ~Shift <Key>7: string(0x1b) string("[27;5;55~") \n\
- Ctrl ~Shift <Key>8: string(0x1b) string("[27;5;56~") \n\
- Ctrl  Shift <Key>2: string(0x1b) string("[27;5;64~") \n\
- Ctrl ~Shift <Key>[: string(0x1b) string("[27;5;91~") \n\
- Ctrl ~Shift <Key>\\\\: string(0x1b) string("[27;5;92~") \n\
- Ctrl  Shift <Key>6: string(0x1b) string("[27;5;94~") \n\
- Ctrl ~Shift <Key>_: string(0x1b) string("[27;5;95~") \n\
- Ctrl ~Shift <Key>`: string(0x1b) string("[27;5;96~") \n\
- Ctrl        <Key>i: string(0x1b) string("[27;5;105~") \n\
- Ctrl        <Key>m: string(0x1b) string("[27;5;109~") \n\
- Ctrl        <Key>w: string(0x1b) string("[27;5;119~") \n\
- Ctrl  Shift <Key>[: string(0x1b) string("[27;5;123~") \n\
- Ctrl  Shift <Key>\\\\: string(0x1b) string("[27;5;124~") \n\
- Ctrl  Shift <Key>]: string(0x1b) string("[27;5;125~") \n\
- Ctrl  Shift <Key>`: string(0x1b) string("[27;5;126~") \n\
+ Ctrl ~Shift <Key>2: string("\033[27;5;50~") \n\
+ Ctrl ~Shift <Key>3: string("\033[27;5;51~") \n\
+ Ctrl ~Shift <Key>4: string("\033[27;5;52~") \n\
+ Ctrl ~Shift <Key>5: string("\033[27;5;53~") \n\
+ Ctrl ~Shift <Key>6: string("\033[27;5;54~") \n\
+ Ctrl ~Shift <Key>7: string("\033[27;5;55~") \n\
+ Ctrl ~Shift <Key>8: string("\033[27;5;56~") \n\
+ Ctrl  Shift <Key>2: string("\033[27;5;64~") \n\
+ Ctrl ~Shift <Key>[: string("\033[27;5;91~") \n\
+ Ctrl ~Shift <Key>\\\\: string("\033[27;5;92~") \n\
+ Ctrl  Shift <Key>6: string("\033[27;5;94~") \n\
+ Ctrl ~Shift <Key>_: string("\033[27;5;95~") \n\
+ Ctrl ~Shift <Key>`: string("\033[27;5;96~") \n\
+ Ctrl        <Key>i: string("\033[27;5;105~") \n\
+ Ctrl        <Key>m: string("\033[27;5;109~") \n\
+/* I was having issues binding C-w in readline */\
+ Ctrl  Shift <Key>w: string(0x17) \n\
+ Ctrl ~Shift <Key>w: string("\033[27;5;119~") \n\
+ Ctrl  Shift <Key>[: string("\033[27;5;123~") \n\
+ Ctrl  Shift <Key>\\\\: string("\033[27;5;124~") \n\
+ Ctrl  Shift <Key>]: string("\033[27;5;125~") \n\
+ Ctrl  Shift <Key>`: string("\033[27;5;126~") \n\
 
 XTerm*scrollkey: true
 
@@ -79,8 +82,6 @@ XTerm*color12: rgb:55/55/FF
 XTerm*color13: rgb:FF/55/FF
 XTerm*color14: rgb:55/FF/FF
 XTerm*color15: rgb:FF/FF/FF
-
-!Esc: string(0x1b) string("[27;1;27~") this wont work :(
 
 XTerm*allowWindowOps: true
 

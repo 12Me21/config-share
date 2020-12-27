@@ -35,3 +35,4 @@ set history-preserve-point On
 set show-all-if-ambiguous On
 set page-completions Off
 set completion-query-items 1000
+set enable-bracketed-paste On
