@@ -1,7 +1,0 @@
-xterm-12|12's xterm terminfo,
-# xterm with 24 bit color support
-	use=xterm-direct,
-# sequences for setting status line (window title)
-	use=xterm+sl,
-# allow resetting color palette (probably unimportant)
-	use=xterm+osc104,
