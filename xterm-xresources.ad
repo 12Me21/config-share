@@ -1,6 +1,6 @@
 ! xrdb -merge "$0"; exit
 
-XTerm*termName: xterm-direct
+XTerm*termName: xterm-12
 XTerm.vt100.metaSendsEscape: true
 
 ! font

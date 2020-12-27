@@ -48,6 +48,7 @@ case $TERM in
 			echo -n $'\e[m\e[K' #clear row
 		}
 
+		# programs that use stupid hardcoded sequences
 		if [ -x /usr/bin/dircolors ]; then
 			test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 			for c in ls dir vdir grep fgrep egrep; do
