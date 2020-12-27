@@ -27,12 +27,24 @@
 
 #set keymap emacs-standard what does this do?
 
+## Autocomplete
+# colored filenames
 set colored-stats On
+# ignore case
 set completion-ignore-case On
-set colored-completion-prefix On
 set completion-map-case On
-set history-preserve-point On
+# colored prefixes
+set colored-completion-prefix On
+# show autocomplete list on first tab press instead of second
 set show-all-if-ambiguous On
+# disable paging
 set page-completions Off
+# only prompt if more than 1000 items
 set completion-query-items 1000
+
+# preserve cursor position in history entries
+set history-preserve-point On
+
+# allow pasting multiline text etc.
 set enable-bracketed-paste On
+
