@@ -15,7 +15,7 @@ loaded automatically when an interactive bash shell starts
 location: `~/.emacs.d/.dir-locals.el`
 loaded automatically during emacs startup
 
-* `readline-inputrc`
+* `readline-inputrc.cfg`
 location: `~/.inputrc`
 loaded automatically by readline (used by many programs, including bash)
 
