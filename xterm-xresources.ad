@@ -27,6 +27,14 @@ xterm*vt100.Translations: #override \
  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
 /* disable Alt-Enter fullscreen shortcut */\
  Alt <Key>Return: ignore() \n\
+/* modified escape keypresses */\
+ Ctrl Alt Shift <Key>Escape: string(0x1b) string("[27;8;27~") \n\
+ Ctrl Alt <Key>Escape: string(0x1b) string("[27;7;27~") \n\
+ Ctrl Shift <Key>Escape: string(0x1b) string("[27;6;27~") \n\
+ Alt Shift <Key>Escape: string(0x1b) string("[27;4;27~") \n\
+ Ctrl <Key>Escape: string(0x1b) string("[27;5;27~") \n\
+ Alt <Key>Escape: string(0x1b) string("[27;3;27~") \n\
+ Shift <Key>Escape: string(0x1b) string("[27;2;27~") \n\
 /* these allow distinguishing things like Ctrl-I vs Tab */\
  Ctrl ~Shift <Key>2: string(0x1b) string("[27;5;50~") \n\
  Ctrl ~Shift <Key>3: string(0x1b) string("[27;5;51~") \n\

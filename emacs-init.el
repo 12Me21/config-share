@@ -24,6 +24,14 @@
    ;; note: we are keeping [?\C-@] (i.e. [0], rendered as C-@) for ctrl+space
    ;; and remapping ctrl+@ to [C-@] (rendered as <C-@>)
    ;; also, ctrl+/ sends ^_ and ctrl+_ sends C-/
+   (define-key map "\e[27;8;27~"  [C-M-s-ESC] )
+   (define-key map "\e[27;7;27~"  [C-M-ESC] )
+   (define-key map "\e[27;6;27~"  [C-s-ESC] )
+   (define-key map "\e[27;4;27~"  [M-s-ESC] )
+   (define-key map "\e[27;5;27~"  [C-ESC] )
+   (define-key map "\e[27;3;27~"  [M-ESC] )
+   (define-key map "\e[27;2;27~"  [s-ESC] )
+;;h
    (define-key map "\e[27;5;35~"  [?\C-#] )
    (define-key map "\e[27;5;50~"  [?\C-2] )
    (define-key map "\e[27;5;51~"  [?\C-3] )
