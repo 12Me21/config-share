@@ -13,7 +13,4 @@ loaded automatically when an interactive bash shell starts
 
 ---
 
-* `xterm-24bit.term`
-install with `tic -x <filename>` (run as root to install globally)
-terminfo file to allow 24 bit colors in compatible terminals.
-supported by emacs
+Note: xterm-24bit was redundant. Set TERM to "xterm-direct" (or the -direct variant of whatever terminal you use, if available)
