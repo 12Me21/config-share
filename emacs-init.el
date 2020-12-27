@@ -23,13 +23,8 @@
    ;; to define
    ;; note: we are keeping [?\C-@] (i.e. [0], rendered as C-@) for ctrl+space
    ;; and remapping ctrl+@ to [C-@] (rendered as <C-@>)
-   (define-key map "\e[27;5;105~" [C-i]   )
-   (define-key map "\e[27;5;109~" [C-m]   )
-   (define-key map "\e[27;5;119~" [?\C-w]   )
-   (define-key map "\e[27;5;64~"  [C-@]   )
-   (define-key map "\e[27;5;91~"  [C-\[]  )
-
-   (define-key map "\e[27;5;47~"  [?\C-/] )
+   ;; also, ctrl+/ sends ^_ and ctrl+_ sends C-/
+   (define-key map "\e[27;5;35~"  [?\C-#] )
    (define-key map "\e[27;5;50~"  [?\C-2] )
    (define-key map "\e[27;5;51~"  [?\C-3] )
    (define-key map "\e[27;5;52~"  [?\C-4] )
@@ -37,8 +32,14 @@
    (define-key map "\e[27;5;54~"  [?\C-6] )
    (define-key map "\e[27;5;55~"  [?\C-7] )
    (define-key map "\e[27;5;56~"  [?\C-8] )
+   (define-key map "\e[27;5;64~"  [C-@]   )
+   (define-key map "\e[27;5;91~"  [C-\[]  )
    (define-key map "\e[27;5;94~"  [?\C-^] )
+   (define-key map "\e[27;5;95~"  [?\C-/] )
    (define-key map "\e[27;5;96~"  [?\C-`] )
+   (define-key map "\e[27;5;105~" [C-i]   )
+   (define-key map "\e[27;5;109~" [C-m]   )
+   (define-key map "\e[27;5;119~" [?\C-w] )
    (define-key map "\e[27;5;123~" [?\C-{] )
    (define-key map "\e[27;5;124~" [?\C-|] )
    (define-key map "\e[27;5;125~" [?\C-}] )

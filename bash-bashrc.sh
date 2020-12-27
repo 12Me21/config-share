@@ -96,7 +96,7 @@ if ! shopt -oq posix; then
 	fi
 fi
 
-PATH="$PATH:~/scripts:." # evil
+#PATH="$PATH:~/scripts:." # evil
 
 #end=`date +%s%N`
 #echo Execution time was `expr '(' $end - $start ')' '/' 1000000`ms.

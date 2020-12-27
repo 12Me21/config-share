@@ -1,10 +1,4 @@
-"\e[27;5;105~": ""
-"\e[27;5;109~": ""
-"\e[27;5;119~": kill-region
-"\e[27;5;64~": ""
-"\e[27;5;91~": ""
-
-"\e[27;5;47~": ""
+"\e[27;5;35~": ""
 "\e[27;5;50~": ""
 "\e[27;5;51~": ""
 "\e[27;5;52~": ""
@@ -12,13 +6,26 @@
 "\e[27;5;54~": ""
 "\e[27;5;55~": ""
 "\e[27;5;56~": ""
+"\e[27;5;64~": ""
+"\e[27;5;91~": ""
 "\e[27;5;94~": ""
+"\e[27;5;95~": ""
 "\e[27;5;96~": ""
+"\e[27;5;105~": ""
+"\e[27;5;109~": ""
+"\e[27;5;119~": kill-region
 "\e[27;5;123~": ""
 "\e[27;5;124~": ""
 "\e[27;5;125~": ""
 "\e[27;5;126~": ""
 
+#set keymap emacs-standard what does this do?
+
 set colored-stats On
 set completion-ignore-case On
+set colored-completion-prefix On
 set completion-map-case On
+set history-preserve-point On
+set show-all-if-ambiguous On
+set page-completions Off
+set completion-query-items 1000

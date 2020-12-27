@@ -1,6 +1,6 @@
 ! xrdb -merge "$0"; exit
 
-XTerm*termName: xterm-12
+XTerm*termName: xterm-24bit
 XTerm.vt100.metaSendsEscape: true
 
 ! font
@@ -28,26 +28,26 @@ xterm*vt100.Translations: #override \
 /* disable Alt-Enter fullscreen shortcut */\
  Alt <Key>Return: ignore() \n\
 /* these allow distinguishing things like Ctrl-I vs Tab */\
- Ctrl       <Key>i: string(0x1b) string("[27;5;105~") \n\
- Ctrl       <Key>m: string(0x1b) string("[27;5;109~") \n\
- Ctrl       <Key>w: string(0x1b) string("[27;5;119~") \n\
- Ctrl Shift <Key>[: string(0x1b) string("[27;5;123~") \n\
- Ctrl       <Key>[: string(0x1b) string("[27;5;91~") \n\
- Ctrl Shift <Key>]: string(0x1b) string("[27;5;125~") \n\
- Ctrl Shift <Key>`: string(0x1b) string("[27;5;126~") \n\
- Ctrl       <Key>`: string(0x1b) string("[27;5;96~") \n\
- Ctrl       <Key>/: string(0x1b) string("[27;5;47~") \n\
- Ctrl Shift <Key>\: string(0x1b) string("[27;5;124~") \n\
-/* ctrl+numbers */\
- Ctrl Shift <Key>2: string(0x1b) string("[27;5;64~") \n\
- Ctrl       <Key>2: string(0x1b) string("[27;5;50~") \n\
- Ctrl       <Key>3: string(0x1b) string("[27;5;51~") \n\
- Ctrl       <Key>4: string(0x1b) string("[27;5;52~") \n\
- Ctrl       <Key>5: string(0x1b) string("[27;5;53~") \n\
- Ctrl Shift <Key>6: string(0x1b) string("[27;5;94~") \n\
- Ctrl       <Key>6: string(0x1b) string("[27;5;54~") \n\
- Ctrl       <Key>7: string(0x1b) string("[27;5;55~") \n\
- Ctrl       <Key>8: string(0x1b) string("[27;5;56~") \n\
+ Ctrl ~Shift <Key>2: string(0x1b) string("[27;5;50~") \n\
+ Ctrl ~Shift <Key>3: string(0x1b) string("[27;5;51~") \n\
+ Ctrl ~Shift <Key>4: string(0x1b) string("[27;5;52~") \n\
+ Ctrl ~Shift <Key>5: string(0x1b) string("[27;5;53~") \n\
+ Ctrl ~Shift <Key>6: string(0x1b) string("[27;5;54~") \n\
+ Ctrl ~Shift <Key>7: string(0x1b) string("[27;5;55~") \n\
+ Ctrl ~Shift <Key>8: string(0x1b) string("[27;5;56~") \n\
+ Ctrl  Shift <Key>2: string(0x1b) string("[27;5;64~") \n\
+ Ctrl ~Shift <Key>[: string(0x1b) string("[27;5;91~") \n\
+ Ctrl ~Shift <Key>\\\\: string(0x1b) string("[27;5;92~") \n\
+ Ctrl  Shift <Key>6: string(0x1b) string("[27;5;94~") \n\
+ Ctrl ~Shift <Key>_: string(0x1b) string("[27;5;95~") \n\
+ Ctrl ~Shift <Key>`: string(0x1b) string("[27;5;96~") \n\
+ Ctrl        <Key>i: string(0x1b) string("[27;5;105~") \n\
+ Ctrl        <Key>m: string(0x1b) string("[27;5;109~") \n\
+ Ctrl        <Key>w: string(0x1b) string("[27;5;119~") \n\
+ Ctrl  Shift <Key>[: string(0x1b) string("[27;5;123~") \n\
+ Ctrl  Shift <Key>\\\\: string(0x1b) string("[27;5;124~") \n\
+ Ctrl  Shift <Key>]: string(0x1b) string("[27;5;125~") \n\
+ Ctrl  Shift <Key>`: string(0x1b) string("[27;5;126~") \n\
 
 XTerm*scrollkey: true
 
