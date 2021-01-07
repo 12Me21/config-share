@@ -74,6 +74,7 @@ case $TERM in
 		LS_COLORS+=':*.js=33;38;5;166'
 		LS_COLORS+=':*.html=31:*.htm=31'
 		LS_COLORS+=':*.pdf=31'
+		LS_COLORS+=':*.o=38;5;225'
 		LS_COLORS+=':*.css=35'
 		LS_COLORS+=':*makefile=92:*.mk=92:*.sh=92'
 		LS_COLORS+=':*.c=90'
@@ -86,6 +87,7 @@ esac # xterm
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+alias make='make -j2'
 
 # enable programmable completion features (you don't need to enable this, if it's already enabled in /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
@@ -96,7 +98,7 @@ if ! shopt -oq posix; then
 	fi
 fi
 
-#PATH="$PATH:~/scripts:." # evil
+PATH="$PATH:~/scripts"
 
 #end=`date +%s%N`
 #echo Execution time was `expr '(' $end - $start ')' '/' 1000000`ms.

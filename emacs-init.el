@@ -1,12 +1,8 @@
 (setq gc-cons-threshold (* 50 1000 1000)) ;set threshold high to reduce garbage collection during some of startup
-
-;(require 'package)
-;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;(package-initialize)
-
 (add-to-list 'load-path "~/.emacs.d/lisp/")
-
-(require 'terminfo-mode)
+;;(add-to-list 'load-path "~/Code/fontlock2/")
+;;(require 'terminfo)
+;;(require 'xresources)
 
 (require 'tree-sitter)
 (require 'tree-sitter-langs)
@@ -63,6 +59,12 @@
 (smart-tabs-insinuate
  'c 'c++ 'java 'javascript 'cperl 'python 'ruby 'nxml ;builtin
  'lua) ;custom
+
+(add-hook
+ 'emacs-lisp-mode-hook
+ (lambda ()
+   (setq indent-tabs-mode nil)
+   (setq tab-width 8)))
 
 (add-hook
  'emacs-startup-hook
@@ -134,6 +136,7 @@
  '(indent-tabs-mode t)
  '(inhibit-default-init nil)
  '(inhibit-startup-screen t)
+ '(jit-lock-chunk-size 1000)
  '(js-indent-level 3)
  '(menu-bar-mode nil)
  '(mode-line-format
@@ -149,12 +152,15 @@
      ("user42" . "https://download.tuxfamily.org/user42/elpa/packages/")))
  '(package-check-signature nil)
  '(package-selected-packages
-   '(formfeed-hline eimp ascii-table sm-c-mode csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
+   '(snow formfeed-hline eimp ascii-table sm-c-mode csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
  '(pascal-case-indent 3)
+ '(safe-local-variable-values '((whitespace-line-column . 80)))
  '(sgml-basic-offset 3)
  '(sh-basic-offset 3)
  '(sh-indentation 3)
  '(show-paren-mode t)
+ '(sm-c-indent-basic 3)
+ '(sm-c-indent-braces t)
  '(standard-indent 3)
  '(tab-width 3)
  '(tree-sitter-hl-use-font-lock-keywords nil)
@@ -196,13 +202,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(font-lock-comment-delimiter-face ((t (:foreground "#A0A0A0" :inherit font-lock-comment-face))))
  '(font-lock-comment-face ((t (:extend t :background "#FFF0F0" :foreground "#CC0000" :slant italic))))
  '(font-lock-regexp-grouping-backslash ((t (:foreground "gray55"))))
  '(font-lock-regexp-grouping-construct ((t (:inherit bold))))
+ '(font-lock-type-face ((t (:foreground "#00ab30"))))
+ '(font-lock-variable-name-face ((t (:foreground "chocolate"))))
  '(hl-line ((t (:extend t :background "#DDFFDD"))))
  '(mode-line ((t (:box (:line-width (1 . -1) :style released-button) :foreground "#EEEEEE" :background "gray30"))))
  '(mode-line-inactive ((t (:inherit mode-line :background "grey60" :foreground "grey0" :box (:line-width (1 . -1) :color "grey75") :weight light))))
  '(tab-bar ((t (:foreground "black" :background "grey90" :inherit variable-pitch))))
+ '(tree-sitter-hl-face:punctuation ((t (:inherit default))))
+ '(tree-sitter-hl-face:punctuation\.bracket ((t (:inherit tree-sitter-hl-face:punctuation))))
+ '(tree-sitter-hl-face:punctuation\.delimiter ((t (:foreground "dimgray" :inherit tree-sitter-hl-face:punctuation))))
  '(vertical-border ((t (:weight extra-bold :background "aaaaaaaaa" :inherit mode-line-inactive))))
  '(web-mode-doctype-face ((t (:foreground "Snow4"))))
  '(web-mode-html-attr-name-face ((t (:inherit font-lock-variable-name-face))))
@@ -215,14 +227,22 @@
 ;; file extensions
 (add-to-list 'auto-mode-alist '("\\.pro\\'" . qt-pro-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.c\\'" . sm-c-mode))
+;;(add-to-list 'auto-mode-alist '("\\.h\\'" . sm-c-mode))
 
 (setq web-mode-offsetless-elements '("body" "html" "head")) ;don't indent inside some html elements
+
+(defun fl-delete-token ()
+  (interactive)
+  (kill-region
+   (point)
+   (previous-single-char-property-change (point) 'face)))
 
 ;; Custom keybinds
 (define-minor-mode my-keys-minor-mode
   "my custom keybind mode"
   :init-value t
-  :lighter " :" ;this makes a :) in the mode line
+;;  :lighter " :" ;this makes a :) in the mode line
   :keymap (let ((map (make-sparse-keymap)))
             (define-key map "\C-o" 'other-window)
             (define-key map [?\M-o] 'previous-window-any-frame)
@@ -230,6 +250,19 @@
             (define-key map [C-i] 'next-buffer) ;not TAB!
             (define-key map [?\M-\\] 'indent-region)
             (define-key map [(control x)(o)] (lambda () (interactive))) ;unbind C-x o so I stop using it
+            (define-key map [(control x)(k)] 'kill-current-buffer)
+            (define-key map [(control x)(control k)] 'kill-current-buffer)
+            (define-key map [C-m] 'kill-current-buffer)
+            (define-key map [?\C-u] 'undo)
+            (define-key map [?\C-_] (lambda () (interactive))) ;stop
+            (define-key map [?\M-E] 'end-of-buffer)
+            (define-key map [?\M-A] 'beginning-of-buffer)
+            (define-key map [?\M-e] 'forward-paragraph)
+            (define-key map [?\M-a] 'backward-paragraph)
+;            (define-key map (kbd "M-DEL") 'fl-delete-token)
             map))
 
+;;(defun time-command (a b c)
+;;  (message "time: %f" (float-time (time-subtract c a))))
 
+(define-key help-map "c" 'describe-char)

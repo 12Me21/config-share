@@ -1,6 +1,9 @@
 #!/usr/bin/tic -c
-xterm-24bit|xterm with nonstandard rgb sequences for emacs,
+xterm-24|xterm with nonstandard rgb sequences for emacs,
 # nonstandard sequences
+  bce,
+  setf=2,
+  setf=2,
   seta24=\E[38:2:%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%dm,
   setb24=\E[48:2:%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%dm,
 # allow setting window title

@@ -1,4 +1,14 @@
-! xrdb -merge "$0"; exit
+!; xrdb -merge "$0"; exit
+
+*customization: -color
+Xcursor.size:   28
+Xcursor.theme:  Adwaita
+Xcursor.theme_core:     1
+Xft.antialias:  1
+Xft.dpi:        105
+Xft.hinting:    0
+Xft.hintstyle:  hintnone
+Xft.rgba:       rgb
 
 XTerm*termName: xterm-24bit
 XTerm.vt100.metaSendsEscape: true
@@ -6,7 +16,7 @@ XTerm.vt100.metaSendsEscape: true
 ! font
 XTerm*renderFont: true
 XTerm*faceName: Cascadia Code
-XTerm*faceSize: 12
+XTerm*faceSize: 11
 XTerm*scaleHeight: 1
 !XTerm*useClipping: false
 XTerm*showMissingGlyphs: true
@@ -19,51 +29,55 @@ XTerm*faceSize4: 18
 XTerm*faceSize5: 24
 XTerm*faceSize6: 32
 
-XTerm*BorderWidth: 4
+XTerm*borderWidth: 4
 
-xterm*vt100.Translations: #override \
+Xterm*alternateScroll: true
+
+!must be lowercase x fsr
+xterm*vt100.translations: #override \n\
 /* copy/paste with Ctrl-Shift-C/V */\
  Shift Ctrl <Key>V: insert-selection(CLIPBOARD) \n\
  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+/* scroll 1 row at a time instead of 5 */\
+ ~Ctrl <Btn4Down>:scroll-back(2,line,m) \n\
+ ~Ctrl <Btn5Down>:scroll-forw(2,line,m) \n\
 /* disable Alt-Enter fullscreen shortcut + restore M-RET */\
 /* Ctrl Alt <Key>Return: string("\033\010") \n\ C-M-RET idk... */\
- Alt <Key>Return: string("\033\015") \n\
+  Alt <Key>Return: string(\033\010) \n\
 /* modified escape keypresses */\
- Ctrl Alt Shift <Key>Escape: string("\033[27;8;27~") \n\
- Ctrl Alt <Key>Escape: string("\033[27;7;27~") \n\
- Ctrl Shift <Key>Escape: string("\033[27;6;27~") \n\
- Alt Shift <Key>Escape: string("\033[27;4;27~") \n\
- Ctrl <Key>Escape: string("\033[27;5;27~") \n\
- Alt <Key>Escape: string("\033[27;3;27~") \n\
- Shift <Key>Escape: string("\033[27;2;27~") \n\
+ Ctrl Alt Shift <Key>Escape: string(\033[27;8;27~) \n\
+ $Ctrl Alt <Key>Escape: string(\033[27;7;27~) \n\
+ Ctrl Shift <Key>Escape: string(\033[27;6;27~) \n\
+ Alt Shift <Key>Escape: string(\033[27;4;27~) \n\
+ Ctrl <Key>Escape: string(\033[27;5;27~) \n\
+ Alt <Key>Escape: string(\033[27;3;27~) \n\
+ Shift <Key>Escape: string(\033[27;2;27~) \n\
 /* these allow distinguishing things like Ctrl-I vs Tab */\
- Ctrl ~Shift <Key>2: string("\033[27;5;50~") \n\
- Ctrl ~Shift <Key>3: string("\033[27;5;51~") \n\
- Ctrl ~Shift <Key>4: string("\033[27;5;52~") \n\
- Ctrl ~Shift <Key>5: string("\033[27;5;53~") \n\
- Ctrl ~Shift <Key>6: string("\033[27;5;54~") \n\
- Ctrl ~Shift <Key>7: string("\033[27;5;55~") \n\
- Ctrl ~Shift <Key>8: string("\033[27;5;56~") \n\
- Ctrl  Shift <Key>2: string("\033[27;5;64~") \n\
- Ctrl ~Shift <Key>[: string("\033[27;5;91~") \n\
- Ctrl ~Shift <Key>\\\\: string("\033[27;5;92~") \n\
- Ctrl  Shift <Key>6: string("\033[27;5;94~") \n\
- Ctrl ~Shift <Key>_: string("\033[27;5;95~") \n\
- Ctrl ~Shift <Key>`: string("\033[27;5;96~") \n\
+ Ctrl      <Key>Tab: string(\033[27;5;9~) \n\
+ Ctrl ~Shift <Key>2: string(\033[27;5;50~) \n\
+ Ctrl ~Shift <Key>3: string(\033[27;5;51~) \n\
+ Ctrl ~Shift <Key>4: string(\033[27;5;52~) \n\
+ Ctrl ~Shift <Key>5: string(\033[27;5;53~) \n\
+ Ctrl ~Shift <Key>6: string(\033[27;5;54~) \n\
+ Ctrl ~Shift <Key>7: string(\033[27;5;55~) \n\
+ Ctrl ~Shift <Key>8: string(\033[27;5;56~) \n\
+ Ctrl  Shift <Key>2: string(\033[27;5;64~) \n\
+ Ctrl ~Shift <Key>[: string(\033[27;5;91~) \n\
+ Ctrl ~Shift <Key>\\\\: string(\033[27;5;92~) \n\
+ Ctrl  Shift <Key>6: string(\033[27;5;94~) \n\
+ Ctrl ~Shift <Key>_: string(\033[27;5;95~) \n\
+ Ctrl ~Shift <Key>`: string(\033[27;5;96~) \n\
  Ctrl        <Key>i: string("\033[27;5;105~") \n\
- Ctrl        <Key>m: string("\033[27;5;109~") \n\
-/* I was having issues binding C-w in readline */\
- Ctrl  Shift <Key>w: string(0x17) \n\
- Ctrl ~Shift <Key>w: string("\033[27;5;119~") \n\
- Ctrl  Shift <Key>[: string("\033[27;5;123~") \n\
- Ctrl  Shift <Key>\\\\: string("\033[27;5;124~") \n\
- Ctrl  Shift <Key>]: string("\033[27;5;125~") \n\
- Ctrl  Shift <Key>`: string("\033[27;5;126~") \n\
+ Ctrl        <Key>m: string(\033[27;5;109~) \n\
+ Ctrl  Shift <Key>[: string(\033[27;5;123~) \n\
+ Ctrl  Shift <Key>\\\\: string(\033[27;5;124~) \n\
+ Ctrl  Shift <Key>]: string(\033[27;5;125~) \n\
+ Ctrl  Shift <Key>`: string(\033[27;5;126~) \n\
 
 XTerm*scrollkey: true
 
 ! colors
-XTerm*cursorColor: rgb:00/AA/00
+XTerm*cursorColor: rgb:00/AA/00 /* from xfce4 terminal */
 XTerm*background: rgb:FF/FF/FF
 XTerm*foreground: rgb:00/00/00
 XTerm*color0: rgb:00/00/00
