@@ -2,3 +2,5 @@ include "%L"
 
 <Multi_key> <l> <i> <t> <t> <e> <r> : "🚮"
 <Multi_key> <v> <o> <m> <i> <t> : "🤮"
+<Multi_key> <minus> <v> : "↓"
+<Multi_key> <minus> <^> : "↑"

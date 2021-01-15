@@ -8,6 +8,8 @@ case $- in
 	*) return;;
 esac
 
+stty stop ""
+
 HISTCONTROL=ignoreboth
 shopt -s histappend
 HISTSIZE=1000
@@ -40,14 +42,17 @@ case $TERM in
 
 		# magic function which prints a newline before printing prompt
 		# if the cursor is not at the start of the row
-		PROMPT_COMMAND=_my_prompt_command
-		function _my_prompt_command {
-			local curpos
-			IFS=';' read -p$'\e[6n' -d'R' -s -t5 _ curpos
-			((curpos!=1)) && echo
-			echo -n $'\e[m\e[K' #clear row
-		}
-
+		if [ "`tput u6`" = $'\e[%i%d;%dR' ]
+		then
+			PROMPT_COMMAND=_my_prompt_command
+			function _my_prompt_command {
+				local curpos
+				IFS=';' read -p"`tput u7`" -d'R' -s -t5 _ curpos
+				((curpos!=1)) && echo
+				tput sgr0 el #reset colors, clear row
+			}
+		fi
+		
 		# programs that use stupid hardcoded sequences
 		if [ -x /usr/bin/dircolors ]; then
 			test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"

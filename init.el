@@ -152,7 +152,7 @@
      ("user42" . "https://download.tuxfamily.org/user42/elpa/packages/")))
  '(package-check-signature nil)
  '(package-selected-packages
-   '(snow formfeed-hline eimp ascii-table sm-c-mode csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
+   '(visual-fill-column snow formfeed-hline eimp ascii-table sm-c-mode csv-mode ## circe page-break-lines highlight-parentheses rainbow-delimiters tree-sitter-langs tree-sitter modern-cpp-font-lock web-mode project-root lsp-mode gnu-elpa-keyring-update eglot babel kotlin-mode mines smart-tabs-mode lua-mode d-mode qt-pro-mode xclip))
  '(pascal-case-indent 3)
  '(safe-local-variable-values '((whitespace-line-column . 80)))
  '(sgml-basic-offset 3)
@@ -203,7 +203,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(font-lock-comment-delimiter-face ((t (:foreground "#A0A0A0" :inherit font-lock-comment-face))))
- '(font-lock-comment-face ((t (:extend t :background "#FFF0F0" :foreground "#CC0000" :slant italic))))
+ '(font-lock-comment-face ((t (:extend t :background "#FFF0F0" :foreground "#CC0000"))))
  '(font-lock-regexp-grouping-backslash ((t (:foreground "gray55"))))
  '(font-lock-regexp-grouping-construct ((t (:inherit bold))))
  '(font-lock-type-face ((t (:foreground "#00ab30"))))
