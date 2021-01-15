@@ -1,0 +1,14 @@
+#set softwrap
+set autoindent
+set morespace
+set mouse
+set tabsize 3
+set cutfromcursor
+unbind ^G all
+unbind ^H all
+unbind ^Y all
+bind ^@ mark all
+bind ^G cancel all
+bind ^H help all #doesn't work
+bind ^Y paste all
+bind ^U undo all
