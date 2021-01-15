@@ -93,6 +93,9 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias make='make -j2'
+#alias rm='unlink -- '
+alias cp='cp -i'
+alias mv='mv -i'
 
 # enable programmable completion features (you don't need to enable this, if it's already enabled in /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
 if ! shopt -oq posix; then

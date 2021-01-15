@@ -1,26 +1,28 @@
-* `emacs-init.el`
+* `.emacs.d/init.el` (emacs)
 location: `~/.emacs.d/init.el`
-loaded automatically during emacs startup
 
-* `xterm-xresources.ad`
+* `.Xresources` ()
 location: `~/.Xresources`
-loaded automatically during boot
-update manually using `xrdb -merge <filename>`
 
-* `bash-bashrc.sh`
+* `.bashrc` (bash)
 location: `~/.bashrc`
-loaded automatically when an interactive bash shell starts
 
-* `emacs-dirlocals.el`
-location: `~/.emacs.d/.dir-locals.el`
-loaded automatically during emacs startup
-
-* `readline-inputrc.cfg`
+* `.inputrc` (readline)
 location: `~/.inputrc`
-loaded automatically by readline (used by many programs, including bash)
 
----
+* `.config/nano/nanorc` (nano)
+location: `~/.config/nano/nanorc`
 
-* `xterm-24bit.term`
-install with `tic -x xterm-24bit.term`
-xterm with special emacs RGB color sequences
+* `.XCompose` ()
+location: `~/.XCompose`
+
+* `.xkb/keymap/mykbd` ()
+location: `~/.xkb/keymap/mykbd`
+
+
+
+
+
+
+
+
