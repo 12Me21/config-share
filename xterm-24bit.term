@@ -1,5 +1,5 @@
 #!/usr/bin/tic -c
-xterm-24|xterm with nonstandard rgb sequences for emacs,
+xterm-24bit|xterm with nonstandard rgb sequences for emacs,
 # nonstandard sequences
 # note:
 #  there is an xterm-direct terminfo, which has the "official" way to get 24 bit color on xterm.
