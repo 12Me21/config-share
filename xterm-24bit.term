@@ -8,6 +8,8 @@ xterm-24bit|xterm with nonstandard rgb sequences for emacs,
 #  I think this is a bad solution, and advocate for the usage of emacs's setf24/setb24 instead.
   setf24=\E[38:2:%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%dm,
   setb24=\E[48:2:%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%dm,
+# cursor shapes/colors, clipboard
+  use=xterm+tmux,
 # allow setting window title
   use=xterm+sl,
 # base xterm
